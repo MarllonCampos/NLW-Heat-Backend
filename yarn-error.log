@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: EPERM: operation not permitted, unlink 'C:\Users\Marllon\Documents\projetos\NLW-Heat-Backend\node_modules\prisma\engines\b71d8cb16c4ddc7e3e9821f42fd09b0f82d7934c\query_engine-windows.dll.node'
+  Error: EPERM: operation not permitted, unlink 'S:\projetos\NLW-Heat-Backend\node_modules\prisma\engines\b71d8cb16c4ddc7e3e9821f42fd09b0f82d7934c\query_engine-windows.dll.node'
 
 npm manifest: 
   {
