@@ -1,19 +1,28 @@
-import "dotenv/config"
-import express from 'express'
-import { router } from "./routes"
+import "dotenv/config";
+import express from "express";
+import http from "http";
+import { Server } from "socket.io";
+import { router } from "./routes";
 
+const app = express();
 
-const app = express()
+const serverHttp = http.createServer(app);
 
-app.use(express.json())
-app.get("/github", (req,res) => {
-  res.redirect(`https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}`)
-})
-app.use(router)
+const io = new Server(serverHttp);
 
-app.get("/signin/callback",(req,res)=>{
-  const {code} = req.query
+app.use(express.json());
 
-  return res.json(code)
-})
-app.listen(4000, ()=> console.log('Server Running'))
+app.use(router);
+
+app.get("/github", (req, res) => {
+  res.redirect(
+    `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}`
+  );
+});
+
+app.get("/signin/callback", (req, res) => {
+  const { code } = req.query;
+
+  return res.json(code);
+});
+app.listen(4000, () => console.log("Server Running"));
